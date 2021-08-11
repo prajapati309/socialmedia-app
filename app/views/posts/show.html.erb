@@ -1,0 +1,83 @@
+<div class="panel panel-default">
+<div class="display" style="background-color:lightgrey;">
+<p>
+  <strong>Content:</strong>
+  <%= raw @post.content %>
+</p>
+
+<p>
+  <strong>User_email:</strong>
+  <%= @post.user.email %>
+</p>
+
+<p>
+
+
+<%# image_tag @post.image %>
+
+<% @post.image.each do |image| %>
+
+<%= image_tag(image)  %>  
+<% end -%>
+</p>
+<p>
+  
+  <strong>User:</strong>
+  <%= @post.user.first_name %>
+  <!-- username is the method in user model -->
+</p>
+
+<br>
+
+
+<div class="likes_for_post">
+
+<%= render partial: 'likes/like'  %> 
+
+</div>
+
+
+
+</div>
+<div id="post_comment" , class="panel panel-default" >
+
+ <%= form_with(model: [@post, @post.comments.build], remote:true) do |f| %>
+<% @post.comments.each do |comment| %>
+ <%= render partial: 'comments/new_comment', locals: { comment: comment } %>
+
+
+</div>
+
+<br>
+<div class="post_reply" >
+    
+<% end -%>
+
+<% end -%>
+</div >
+
+
+<div class="create_comment" >
+
+<h2>Add a comment:</h2>
+<%= form_with(model: [@post, @post.comments.build], remote: true ) do |form| %>
+<p>
+    <%= form.label :body %><br>
+  
+    <%= form.text_field :body, :id => 'comment_body1' %>
+ 
+  </p>
+  <p>
+    <div id="clear">    <%= form.submit 'comment' %>
+      </div>
+
+  </p>
+<% end %>
+ 
+</div>
+
+
+<br>
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+</div>

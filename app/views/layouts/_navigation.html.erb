@@ -1,0 +1,17 @@
+<!-- Navigation Bar -->
+  <div class="w3-bar w3-white w3-large">
+    <%= link_to "Home", "/pages/home", class: "w3-bar-item w3-button w3-red w3-mobile" %>
+    <%= link_to "Users_list" , users_path, class: "w3-bar-item w3-button w3-red w3-mobile" if current_user && current_user.admin %>
+    <%= link_to "posts", "/posts" , class: "w3-bar-item w3-button w3-red w3-mobile"%>
+    <%= link_to "Message" , root_path , class: "w3-bar-item w3-button w3-red w3-mobile"%> 
+    <%= link_to "Event", "/events" , class: "w3-bar-item w3-button w3-red w3-mobile"%>
+    <%= link_to "Friends", "/friendships" , class: "w3-bar-item w3-button w3-red w3-mobile"%>
+    <%= link_to "Groups" , "/rooms" , class: "w3-bar-item w3-button w3-red w3-mobile"%>
+    <%= link_to "Chatrooms" , chatrooms_path , class: "w3-bar-item w3-button w3-red w3-mobile"%> 
+    <%= link_to "Profile" , user_path(current_user.id) , class: "w3-bar-item w3-button w3-right w3-red w3-mobile" if current_user%>
+    <%= link_to "Sign_in", new_user_session_path, class: "w3-bar-item w3-button w3-right w3-red w3-mobile"%>
+    <%= link_to "Sign_up", new_user_registration_path, class: "w3-bar-item w3-button w3-right w3-red w3-mobile"%>
+    <%= link_to "Sign_out", destroy_user_session_path, method: :delete , class: "w3-bar-item w3-button w3-right w3-red w3-mobile"%>
+  </div>
+<!-- Navigation Bar -->
+  <%= render 'layouts/alerts' if alert.present? %>

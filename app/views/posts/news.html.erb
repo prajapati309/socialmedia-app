@@ -1,0 +1,28 @@
+
+<div >
+    <% @posts.each do |post| %>
+    <div>
+   <b> # <%= post.user.first_name %> <%= post.user.last_name %>  Posted a New Story With <%= post.image.count %> Image  <br></b> 
+    <%= time_ago_in_words(post.created_at) %> ago
+    <div >
+    <strong> <%= raw post.content %> </strong>
+
+    <% post.image.each do |image| %>
+
+    <%= image_tag(image)  %> 
+    <% end -%>
+    <br>
+
+    <div style="display: flex;padding-top: 10px; ">
+    <%= button_to "Like", class: "btn btn-success" %>
+    <%= button_to "Comment", class: "btn btn-success" %>
+    </div>
+
+    </div> 
+    <div style="height: 30px; width: 100%; background: white">
+  
+
+    </div>
+    <% end -%>
+</div>
+</div>

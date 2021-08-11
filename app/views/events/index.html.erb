@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style >
+    td,th{
+      padding: 20px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="panel panel-default">
+<h1>Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event_body</th>
+      <th>start_date </th>
+      <th>end_date </th>
+      <th>posted_by </th>
+    </tr>
+  </thead>
+
+  <tbody>
+<tr>
+<h3>events </h3>
+<% @events.each do |event| %>
+  <td>
+    <p><%= event.body %></p></td>
+    <td><p><%= event.start_date %></p></td>
+    <td><p><%= event.end_date %></p></td>
+    <td><p><%= event.user.first_name %></p></td>
+    <% if can? :destroy , event %>
+    <td><p><%= button_to 'Delete', event_path(event), method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-default" %></p></td>
+    <% end -%>
+ </tr>
+<% end %>
+</tbody>
+</table>
+
+<%= link_to "back", root_path , class: "btn btn-default" %>
+<br>
+<%= link_to "New Event", new_event_path, class: "btn btn-default" %>
+
+  </div>
+</body>
+</html>

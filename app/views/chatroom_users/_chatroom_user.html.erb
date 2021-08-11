@@ -1,0 +1,10 @@
+<% if current_user %>
+
+<p><% pre_joined = chatroom.chatroom_users.find { |ChatroomUser| ChatroomUser.user_id == current_user.id} %>
+<% if pre_joined %>
+   <%= link_to "Leave", chatroom_chatroom_users_path(chatroom) , method: :delete , class: "btn btn-default"%>
+<% else %>
+  <%= link_to "Join", chatroom_chatroom_users_path(chatroom) , method: :post , class: "btn btn-default"%>
+<% end -%>
+
+<% end -%>

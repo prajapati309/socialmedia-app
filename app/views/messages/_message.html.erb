@@ -1,0 +1,10 @@
+
+<strong>
+
+<p><%= message.body %></p></strong>
+<p><i><%= time_ago_in_words(message.created_at) %> Ago</i><br>
+  by <strong><%= message.user.first_name %></strong></p>
+  <% if can? :destroy , message %>
+   <%= link_to "delete" , method: :delete , class: "btn btn-default" %>
+   <% end -%>
+<hr>

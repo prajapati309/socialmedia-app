@@ -1,0 +1,64 @@
+<div id="not">
+	
+</div>
+<div class="panel panel-default">
+<%#= render 'friends/lookup' %>
+<% if @friends.count > 0 || @requested_friends.count > 0 %>
+<h2 align="center" class="panel panel-primary">My Friends</h2>
+
+<table class="table table-striped">
+<thread>
+<tr>
+<th>Name</th>
+<th> Request </th>
+</tr>
+</thread>
+<tbody>
+	
+<% @friends.each do |friend| %>
+<tr>
+<td><%= friend.first_name %></td>
+<td>
+	<div id="view_remove">
+<%= link_to "View Profile", friendship_path(friend.id) , class:"btn btn-primary btn-xs" %>
+<%= link_to 'Remove Friend', deny_request_path(friend), method: :delete, :confirm => "Are you sure?", :class => "btn btn-xs btn-danger" , remote: true %>
+
+  <%= link_to 'send a message', new_message_path(receiver_id: friend.id) , class:"btn btn-primary btn-xs"  %>
+
+</div>
+</td>
+</tr>
+<% end %>
+</div>
+<% @requested_friends.each do |requested_friend| %>
+<tr>
+<td><%= requested_friend.first_name %></td>
+<td>
+	<div id="accept_view">
+<%= link_to "View Profile", friendship_path(requested_friend), class:"btn btn-primary btn-xs" %>
+
+
+
+	<%= link_to "Accept", accept_request_path(requested_friend), method: :put, class:"btn btn-default btn-xs" , remote: true , id: "accept_req " %>
+	<%#= link_to "Accept", accept_request_path(requested_friend), method: :put, class:"btn btn-default btn-xs" , remote: true  %>
+
+
+
+<%= link_to "Decline", deny_request_path(requested_friend), method: :delete, class: "btn btn-xs btn-danger" , remote: true %>
+</div>
+</td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<% else %>
+<p class="lead", align = "center"> You don't have any friends yet. Go out and make some. </p>
+<% end %>
+</div>
+</div>
+
+<div class="container" >
+<h3> Add Friends </h3>
+<%= render partial: "users/list" %>
+
+</div>

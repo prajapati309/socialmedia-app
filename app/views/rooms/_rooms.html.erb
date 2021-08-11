@@ -1,0 +1,33 @@
+<div class="mb-3">
+  <%= link_to new_room_path, class: 'btn btn-primary' do %>
+    Create a Group
+  <% end %>
+</div>
+
+<% if @rooms.present? %>
+  <nav class="nav flex-column">
+    <% @rooms.each do |room| %>
+    <div style="display: flex;">
+    <div style="width: 25%; height: 10px; padding: 5px;">
+      
+     <strong > <%= link_to room.name, room_path(room.id) ,class: 'nav-link room-nav-link' %></strong>
+
+     </div>
+  
+
+      <%= button_to "Join" , memberships_path(room.id) , method: :post, class: 'btn  btn-default' %>
+
+
+        <%= button_to "leave" , leave_room_path(room.id), method: :delete , class: 'btn  btn-default' %>
+
+  
+     </div>
+
+    <% end %>
+  </nav>
+<% else %>
+  <div class="text-muted">
+    The are no Groups
+  </div>
+<% end %>
+

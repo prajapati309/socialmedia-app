@@ -1,0 +1,12 @@
+<% if user_signed_in? %>
+   <% if current_user.memberships.include?(@room) %>
+       You're already a member of this group!
+   <% else %>
+      <%= form_for Membership.new do |f| %>
+      	<%= f.hidden_field :room_id, :value => params[:id] %>
+
+
+         <%= f.submit "Join" %>
+      <% end %>
+   <% end %>
+<% end %>

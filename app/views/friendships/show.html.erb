@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style >
+		.card-img-top{
+			width: 200px;
+		}
+	</style>
+</head>
+<body>
+<!-- Section: Personal card -->
+<section class="my-5">
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-md-6 col-lg-4">
+
+      <!-- Card -->
+      <div class="card card-personal">
+
+        <!-- Card image-->
+
+       
+         <% @friend.avatar.each do |image| %>
+
+        <div class="card-img-top">
+        <%= image_tag(image)  %> 
+         </div>
+         <% end -%>
+
+         <% if @friend.avatar.count == 0 %>
+         <h4>  <%=@friend.first_name%> Dont have Profile picture </h4>
+         <% end -%>
+        <!-- Card image-->
+
+        <!-- Card content -->
+        <div class="card-body">
+          <!-- Title-->
+          <a>
+            <h4 class="card-title title-one"><%= @friend.first_name %> <%= @friend.last_name %></h4>
+          </a>
+          <p class="card-meta">Email : <%= @friend.email %> </p>.
+
+          <p class="card-meta">Date of Birth : <%= @friend.date_of_birth %> </p>
+
+          <p class="card-meta"> <b> Interested In :  </b> </p> <% if @friend.gender == "male"%>  <P> Female </P><% else %>  <p>  Male </p>
+          <!-- Text --> 
+          <% end -%>
+          <p class="card-text"><h3> About Me </h3> </p>
+          <div>
+          	i need someone to talk 
+          </div>
+          <hr>
+          <a class="card-meta"><span><i class="fas fa-user"></i> No. of Friends  <%= @friend.friends.count %></span></a> <br>
+
+          <a class="card-meta"><span><i class="fas fa-user"></i> No. of Posts posted by <%= @friend.first_name%> <%= @friend.posts.count %></span></a>
+          <br>
+          <br>
+
+          <span><i class="fas fa-user"> <%= link_to "Back" , friendships_path %> </i>  </span>
+          
+        </div>
+        <!-- Card content -->
+
+      </div>
+      <!-- Card -->
+
+    </div>
+    <!-- Grid column -->
+
+  </div>
+  <!-- Grid row -->
+
+</section>
+
+
+</body>
+</html>
+
+<!-- Section: Personal card -->

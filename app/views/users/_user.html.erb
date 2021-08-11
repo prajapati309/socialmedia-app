@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style >
+    td{
+      padding: 10px;
+      background: lightgrey;
+    }
+    th{
+      border: 2px dotted black; padding: 10px;
+    }
+
+  </style>
+</head>
+<body>
+list of User 
+
+<table>
+  <thead style="border: 1px dotted black;padding: 10px;">
+    <tr style="padding: 10px;">
+      <th > User Email </th>
+      <th > Name </th>
+      <% if current_user.admin %>
+      <th > Delete Account  </th>
+      <% end -%>
+      <th > Activate/ Deactivate </th>
+      <th colspan="2"> Send Friend Request </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %> 
+    <% if current_user != user %>
+    <tr>
+      <td>
+        <%= user.email %>
+      </td>
+      <td>
+        <%= user.first_name %>
+         <% user.last_name %>    
+      </td>
+      <% if current_user.admin && user != current_user %>
+      <td>
+      <%= button_to " delete", user_path(user.id), method: :delete , data:{
+          confirm: "are you sure ?"
+        } ,class: "btn btn-default"  %>
+      </td>
+      <% end -%>
+       <% unless user.is_active? %>
+      <td>
+        <%= button_to "Activate", activate_user_path(user.id), method: :put ,class: "btn btn-default"  %>
+      </td>
+      <%  else %>
+      <td>
+         <%= button_to "deactivate", deactivate_user_path(user.id) , method: :put ,class: "btn btn-default" , data:{confirm: "are you sure ?" } %>
+      </td>
+      <td>
+        <%= button_to " Send Friends Request", add_friend_path(user.id), method: :post , class: "btn  btn-default" , remote: true , id:"send_req" %><br>
+      </td>
+      <td>
+        <div style="display: none" id="sent">
+      
+
+      <%= button_to "request sent", class: "btn btn-default"  %>  
+      
+      </div>
+      </td>
+      <% end -%>
+    </tr>
+    <% end -%>
+    <% end -%>
+  </tbody>
+</table>
+
+</body>
+</html>
+

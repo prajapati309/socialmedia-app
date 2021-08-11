@@ -1,0 +1,7 @@
+<div style="padding: 5px;">
+		<strong>
+			<%= message.user.first_name %>:
+		</strong> <%= message.body %>
+		<div style="float: right;">
+		<%= time_ago_in_words(message.created_at) %>
+		</div>

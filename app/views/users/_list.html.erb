@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style >
+    td{
+      padding: 10px;
+      background: lightgrey;
+    }
+    th{
+      border: 2px dotted black; padding: 10px;
+    }
+
+  </style>
+</head>
+<body>
+list of User 
+
+<table>
+  <thead style="border: 1px dotted black;padding: 10px;">
+    <tr style="padding: 10px;">
+      <th > User Email </th>
+      <th > Name </th>
+      <th colspan="2"> Send Friend Request </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %> 
+    <% if current_user != user %>
+        <tr>
+          <td>
+            <%= user.email %>
+          </td>
+          <td>
+            <%= user.first_name %>
+             <% user.last_name %>    
+          </td>
+          <td>
+            <%= button_to " Send Friends Request", add_friend_path(user.id), method: :post , class: "btn  btn-default" , remote: true , id:"send_req" %><br>
+          </td>
+          <td>
+            <div style="display: none" id="sent">
+          
+
+          <%= button_to "request sent", class: "btn btn-default"  %>  
+          
+          </div>
+          </td>
+        </tr>
+    <% end -%>
+        <% end -%>
+        
+  </tbody>
+</table>
+
+</body>
+</html>
+

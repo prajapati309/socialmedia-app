@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style >
+		.card-img-top{
+			width: 300px;
+		}
+	</style>
+</head>
+<body>
+<!-- Section: Personal card -->
+<section class="my-5">
+
+  <!-- Grid row -->
+  <div class="row">
+
+    <!-- Grid column -->
+    <div class="col-md-6 col-lg-4">
+
+      <!-- Card -->
+      <div class="card card-personal">
+
+        <!-- Card image-->
+        
+         <% current_user.avatar.each do |image| %>
+
+        <div class="card-img-top">
+        <%= image_tag(image)  %> 
+         </div>
+         <% end -%>
+        <!-- Card image-->
+        <% if can? :update , @user %>
+        <%= link_to "Edit Profile", edit_user_registration_path %>
+        <% end -%>
+        <!-- Card content -->
+        <div class="card-body">
+          <!-- Title-->
+          <a>
+            <h4 class="card-title title-one"><%= @user.first_name %> <%= @user.last_name %></h4>
+          </a>
+          <p class="card-meta">Email : <%= @user.email %> </p>
+
+          <p class="card-meta">Date of Birth : <%= @user.date_of_birth %> </p>
+          <!-- Text -->
+          <p class="card-text"><h3> About Me </h3> </p>
+          <div>
+          	i need someone to talk 
+          </div>
+          <hr>
+          <a class="card-meta"><span><i class="fas fa-user"></i> No. of Friends  <%= @user.friends.count %></span></a> <br>
+
+          <a class="card-meta"><span><i class="fas fa-user"></i> No. of Posts posted by <%= @user.first_name%> <%= @user.posts.count %></span></a>
+          <br>
+          <br>
+
+          <span><i class="fas fa-user"> <%= link_to "Back" %> </i>  </span>
+          
+        </div>
+        <!-- Card content -->
+
+      </div>
+      <!-- Card -->
+
+    </div>
+    <!-- Grid column -->
+
+  </div>
+  <!-- Grid row -->
+
+</section>
+
+
+</body>
+</html>

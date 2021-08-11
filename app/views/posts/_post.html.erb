@@ -1,0 +1,17 @@
+<%= form_for @post, remote: true do |form| %>
+ <div class="field">
+    <%= form.label :content %>
+    <%= form.cktext_area :content , ckeditor: { uiColor: '#AADC6E', language: 'en',toolbar: 'mini' , remote: true , id:"post_create" }  %>
+  </div>
+
+ <div class="field">
+    <%= form.label :image  %>
+    <%= form.file_field :image  %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  </div>
+  <% end -%>

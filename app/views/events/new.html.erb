@@ -1,0 +1,11 @@
+ <%= form_with(model: [@event ], local: true ) do |form| %>
+<%= form.label :body %>
+<%= form.text_area :body %><br>
+
+<%= form.label :start_date %>
+<%= form.date_field :start_date %><br>
+
+<%= form.label :end_date %>
+<%= form.date_field :end_date %><br>
+<%= form.submit %>
+<% end -%>

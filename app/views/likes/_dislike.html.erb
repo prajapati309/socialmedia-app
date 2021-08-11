@@ -1,0 +1,4 @@
+<% if current_user %>
+
+<p> <%= button_to 'Dislike', post_like_path(@post) ,method: :delete , remote: true %> </p>
+<% end -%>

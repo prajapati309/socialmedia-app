@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+</head>
+<body>
+<p>
+  <strong>Group Name :</strong>
+  <%= @chatroom.name  %>
+  <div>  <%= link_to "Leave", chatroom_chatroom_users_path(@chatroom) , method: :delete , class: "btn btn-default"%> </div>
+</p>
+
+<div data-behavior='chatroom_messages' data-chatroom-id="<%= @chatroom.id %>">
+	 
+	<% @messages.each do |message| %>
+	<%= render partial:"chatroom_messages/chatroom_message" , locals: { message: message }%>
+	</div>
+	<% end -%>
+	
+</div>
+<%= form_for [@chatroom, ChatroomMessage.new] , remote: true do |f| %>
+	<%= f.text_area :body , rows: 1 , class: "form-control",autofocus: true%>
+	<%= f.submit "Send Message"%>
+	<% end -%>
+
+
+</body>
+</html>

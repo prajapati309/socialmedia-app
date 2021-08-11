@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+   <% if current_user.rooms.include?(@room) %>
+       You're already a member of this group!
+   <% else %>
+      <%= form_for [@room, @membership] do |f| %>
+         <%= f.submit "Join" %>
+      <% end %>
+   <% end %>
+<% end %>

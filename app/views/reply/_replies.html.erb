@@ -1,0 +1,11 @@
+<% if @comments.exists? %>
+<h2>add the reply :</h2>
+<%= form_with(model: [@post, comment.comments.build], remote: true) do |f| %> 
+
+<%= f.text_area :body  %><br>
+<%= f.submit 'Reply' %><br>
+ 
+<br>
+<% end -%>
+
+<% end -%>
